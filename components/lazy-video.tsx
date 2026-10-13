@@ -33,7 +33,7 @@ export function LazyVideo({ src, className, style, sync, lead = false }: LazyVid
           // Autoplay can be refused (e.g. data saver); the gradient behind stays visible.
         });
       },
-      { rootMargin: "200px" },
+      { rootMargin: "80px" },
     );
     observer.observe(video);
 

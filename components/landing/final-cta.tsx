@@ -7,7 +7,7 @@ export function FinalCta() {
   return (
     <section className="px-4 py-12 sm:px-6">
       <ScrollZoom>
-        <div className="relative mx-auto max-w-5xl animate-pan overflow-hidden rounded-[2rem] bg-brand bg-[length:220%_100%] px-6 py-16 text-center sm:py-24">
+        <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] bg-brand px-6 py-16 text-center sm:py-24">
           <div className="pointer-events-none absolute -right-20 -top-20 size-72 rounded-full bg-white/25 blur-3xl" aria-hidden />
           <div className="pointer-events-none absolute -bottom-24 -left-16 size-72 rounded-full bg-ink/30 blur-3xl" aria-hidden />
           <h2 className="relative text-[clamp(2.5rem,10vw,5.5rem)] font-semibold leading-[0.95] tracking-tight">

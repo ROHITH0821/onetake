@@ -5,7 +5,7 @@
 export function Intro() {
   return (
     <div className="pointer-events-none fixed inset-0 z-[100] grid animate-intro-curtain place-items-center bg-ink [clip-path:inset(0)]" aria-hidden>
-      <div className="absolute left-1/2 top-1/2 size-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand opacity-30 blur-[100px]" />
+      <div className="absolute left-1/2 top-1/2 size-80 -translate-x-1/2 -translate-y-1/2 orb rounded-full bg-brand opacity-50" />
       <div className="relative flex animate-intro-logo flex-col items-center gap-5">
         <div className="flex items-center gap-3 font-heading text-5xl font-semibold tracking-tight sm:text-6xl">
           <span className="grid size-12 place-items-center rounded-2xl bg-brand sm:size-14">

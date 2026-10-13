@@ -8,7 +8,7 @@ import { BeatBars } from "../beat-bars";
 import { ScrollMarquee, Words } from "../scroll-fx";
 import { SongCard } from "../song-card";
 
-const BARS = 56;
+const BARS = 28;
 /** Repeating height pattern so the backdrop reads as an equaliser, not noise. */
 const barHeight = (i: number) => 25 + ((i * 37) % 75);
 
@@ -50,7 +50,7 @@ export function SoundsStrip() {
         <ScrollMarquee text="On the beat" progress={scrollYProgress} className="absolute inset-x-0 top-[8%] opacity-60 motion-reduce:hidden" />
 
         <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 flex h-24 items-end justify-between gap-1.5 px-2 opacity-25 [mask-image:linear-gradient(to_top,black,transparent)] motion-reduce:hidden"
+          className="pointer-events-none absolute inset-x-0 bottom-0 flex h-24 items-end justify-between gap-1.5 px-2 opacity-15 motion-reduce:hidden"
           aria-hidden
         >
           {Array.from({ length: BARS }, (_, i) => (
@@ -75,7 +75,7 @@ export function SoundsStrip() {
         <div className="no-scrollbar relative mt-10 motion-reduce:overflow-x-auto">
           <motion.ul
             ref={row}
-            className="flex w-max gap-4 px-4 py-4 motion-reduce:transform-none! sm:gap-5 sm:px-[max(1.5rem,calc((100vw-64rem)/2+1.5rem))]"
+            className="flex w-max gap-4 px-4 py-4 will-change-transform motion-reduce:transform-none! sm:gap-5 sm:px-[max(1.5rem,calc((100vw-64rem)/2+1.5rem))]"
             style={{ x }}
           >
             {songs.map((s) => (

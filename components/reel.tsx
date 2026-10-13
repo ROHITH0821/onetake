@@ -61,7 +61,7 @@ export function Reel({
             <LazyVideo
               src={video}
               sync={sync}
-              className="size-full object-cover blur-[0.6px] brightness-[0.62] contrast-[0.82] saturate-[0.35] sepia-[0.25]"
+              className="size-full object-cover brightness-[0.62] contrast-[0.82] saturate-[0.35] sepia-[0.25]"
             />
           ) : (
             <>

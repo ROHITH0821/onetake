@@ -117,10 +117,10 @@ export function ScrollMarquee({ text, reverse = false, progress, className }: Sc
   return (
     <div ref={ref} className={cn("pointer-events-none overflow-hidden select-none", className)} aria-hidden>
       <motion.p
-        className="w-max font-heading text-[clamp(4rem,16vw,11rem)] font-bold uppercase leading-none whitespace-nowrap text-transparent [-webkit-text-stroke:1.5px_rgb(255_255_255/0.2)]"
+        className="w-max will-change-transform font-heading text-[clamp(4rem,16vw,11rem)] font-bold uppercase leading-none whitespace-nowrap text-transparent [-webkit-text-stroke:1.5px_rgb(255_255_255/0.2)]"
         style={{ x }}
       >
-        {`${text} · `.repeat(6)}
+        {`${text} · `.repeat(4)}
       </motion.p>
     </div>
   );

@@ -42,7 +42,7 @@ export function Hero() {
   return (
     <section ref={ref} className="relative overflow-hidden px-4 pb-24 pt-32 sm:px-6 sm:pt-40">
       <motion.div
-        className="pointer-events-none absolute left-1/2 top-24 -ml-[19rem] size-[38rem] rounded-full bg-brand opacity-25 blur-[120px]"
+        className="pointer-events-none absolute left-1/2 top-24 -ml-[19rem] size-[38rem] orb rounded-full bg-brand opacity-45 will-change-transform"
         style={{ scale: glowScale, y: glowY }}
         aria-hidden
       />
@@ -92,8 +92,8 @@ export function Hero() {
                 <span className="absolute bottom-4 right-4 rounded-full bg-brand px-3 py-1 text-xs font-semibold">OneTake reel</span>
               </motion.div>
               <motion.div
-                className="absolute inset-y-0 w-1 bg-white shadow-[0_0_30px_6px_var(--color-pink)]"
-                animate={{ left: ["0%", "0%", "100%", "100%", "0%"], opacity: [0, 1, 1, 0, 0] }}
+                className="absolute inset-y-0 left-0 w-1 bg-white shadow-[0_0_30px_6px_var(--color-pink)]"
+                animate={{ x: ["0cqw", "0cqw", "100cqw", "100cqw", "0cqw"], opacity: [0, 1, 1, 0, 0] }}
                 transition={loop}
                 aria-hidden
               />
@@ -107,7 +107,7 @@ export function Hero() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ type: "spring", stiffness: 300, damping: 16, delay: INTRO + 0.9 + i * 0.15 }}
               >
-                <div className="glass flex animate-float items-center gap-2 rounded-full px-3 py-2 text-xs font-medium whitespace-nowrap" style={{ animationDelay: `${delay}s` }}>
+                <div className="glass-blur flex animate-float items-center gap-2 rounded-full px-3 py-2 text-xs font-medium whitespace-nowrap" style={{ animationDelay: `${delay}s` }}>
                   <Icon className="size-4 text-pink" />
                   {label}
                 </div>

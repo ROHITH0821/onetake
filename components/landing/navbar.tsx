@@ -32,7 +32,7 @@ export function Navbar() {
       transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
       onFocusCapture={() => setHidden(false)}
     >
-      <nav className="glass mx-auto max-w-5xl rounded-3xl px-2 py-2 sm:px-4" aria-label="Main">
+      <nav className="glass-blur mx-auto max-w-5xl rounded-3xl px-2 py-2 sm:px-4" aria-label="Main">
         <div className="flex items-center justify-between gap-2">
           <Logo className="pl-1 max-[359px]:text-lg" />
           <ul className="hidden items-center gap-1 md:flex">

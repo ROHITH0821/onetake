@@ -78,8 +78,7 @@
   --animate-caption-word: caption-word 2.4s linear infinite both;
   --animate-float: float 5s ease-in-out infinite;
   --animate-rec: rec 1.2s steps(2) infinite;
-  --animate-pan: pan 7s ease-in-out infinite alternate;
-  --animate-intro-curtain: intro-curtain 0.8s cubic-bezier(0.76, 0, 0.24, 1) 0.9s forwards;
+    --animate-intro-curtain: intro-curtain 0.8s cubic-bezier(0.76, 0, 0.24, 1) 0.9s forwards;
   --animate-intro-logo: intro-logo 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-intro-bar: intro-bar 0.8s cubic-bezier(0.65, 0, 0.35, 1) 0.1s both;
 
@@ -115,9 +114,6 @@
   }
   @keyframes rec {
     50% { opacity: 0.2; }
-  }
-  @keyframes pan {
-    to { background-position: 100% 50%; }
   }
   @keyframes intro-curtain {
     to { clip-path: inset(0 0 100% 0); visibility: hidden; }
@@ -162,11 +158,22 @@
   background-clip: text;
   color: transparent;
 }
+/* Frosted look without backdrop-filter, which is costly on anything that moves. */
 @utility glass {
-  background-color: rgb(255 255 255 / 0.05);
+  background-color: color-mix(in oklab, var(--color-ink-2) 94%, white);
   border: 1px solid rgb(255 255 255 / 0.1);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  backdrop-filter: blur(18px) saturate(140%);
+}
+/* Real backdrop blur: reserve for the one fixed navbar. */
+@utility glass-blur {
+  background-color: rgb(19 19 26 / 0.6);
+  border: 1px solid rgb(255 255 255 / 0.1);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+}
+/* Soft glow via a radial mask instead of a large blur filter. */
+@utility orb {
+  -webkit-mask-image: radial-gradient(closest-side, black, transparent);
+  mask-image: radial-gradient(closest-side, black, transparent);
 }
 @utility glow {
   box-shadow:

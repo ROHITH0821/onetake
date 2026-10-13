@@ -1,5 +1,5 @@
 import { ScanEye, ShieldCheck } from "lucide-react";
-import { editPlans, vibes } from "@/lib/mock-data";
+import { editPlans, sampleClips, vibes } from "@/lib/mock-data";
 import { Reveal } from "../reveal";
 import { SlideIn, Words } from "../scroll-fx";
 import { TiltCard } from "../tilt-card";
@@ -8,7 +8,9 @@ const checks = ["Captions spelled right", "Cuts land on the beat", "Nothing impo
 
 export function Trust() {
   const shots = editPlans.personal.slice(0, 4);
-  const { scenes, video } = vibes[2];
+  const { scenes } = vibes[2];
+  // One clip per storyboard shot.
+  const clips = [sampleClips.friends, sampleClips.dance, sampleClips.beachSunset, sampleClips.foodPose];
 
   return (
     <section id="pricing" className="overflow-x-clip px-4 py-20 sm:px-6 sm:py-28">
@@ -33,7 +35,7 @@ export function Trust() {
                   {shots.map((s, i) => (
                     <li key={s.title}>
                       <div className="relative aspect-[9/14] overflow-hidden rounded-xl border border-white/10" style={{ background: scenes[i] }}>
-                        <video src={`${video}#t=${i * 2 + 1}`} preload="metadata" muted playsInline className="absolute inset-0 size-full object-cover" />
+                        <video src={`${clips[i]}#t=2`} preload="metadata" muted playsInline className="absolute inset-0 size-full object-cover" />
                       </div>
                       <p className="mt-1.5 truncate text-[11px] text-mist">{s.title}</p>
                     </li>

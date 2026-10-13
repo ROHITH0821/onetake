@@ -80,11 +80,14 @@ export function VibeShowcase() {
   return (
     <section ref={section} className="relative h-[420vh] motion-reduce:h-auto motion-reduce:py-20">
       <div className="sticky top-0 flex h-svh flex-col justify-center overflow-hidden motion-reduce:static motion-reduce:h-auto">
-        <div
-          className="pointer-events-none absolute left-1/2 top-1/2 size-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-30 blur-[110px] transition-[background] duration-700 motion-reduce:hidden"
-          style={{ background: current.scenes[0] }}
-          aria-hidden
-        />
+        {vibes.map((v, i) => (
+          <div
+            key={v.id}
+            className="pointer-events-none absolute left-1/2 top-1/2 size-[40rem] orb -translate-x-1/2 -translate-y-1/2 rounded-full transition-opacity duration-700 motion-reduce:hidden"
+            style={{ background: v.scenes[0], opacity: i === active ? 0.4 : 0 }}
+            aria-hidden
+          />
+        ))}
 
         <div className="relative mx-auto w-full max-w-5xl px-4 sm:px-6">
           <h2 className="text-4xl font-semibold tracking-tight sm:text-6xl">
@@ -110,7 +113,7 @@ export function VibeShowcase() {
 
         <motion.ul
           ref={track}
-          className="no-scrollbar relative mt-6 flex w-max items-center gap-2 py-6 motion-reduce:w-auto motion-reduce:transform-none! motion-reduce:gap-4 motion-reduce:overflow-x-auto motion-reduce:px-4 sm:gap-6"
+          className="no-scrollbar relative mt-6 flex w-max items-center gap-2 py-6 will-change-transform motion-reduce:w-auto motion-reduce:transform-none! motion-reduce:gap-4 motion-reduce:overflow-x-auto motion-reduce:px-4 sm:gap-6"
           style={{ x }}
         >
           {vibes.map((v, i) => (
