@@ -1,3 +1,5 @@
+import { formatINR, PRICE, priceLabel } from "./pricing";
+
 // Mock data only — no backend yet. Swap these for API responses later.
 
 // Stock footage: free clips from mixkit.co (Mixkit Stock Video Free License),
@@ -198,13 +200,15 @@ export const editingSteps = [
   "Checking the final edit…",
 ];
 
+// Each tab leads with the problem, then how OneTake fixes it.
 export const audiences = [
   {
     id: "creators",
     label: "Creators",
-    headline: "Post more, edit less.",
-    body: "Shoot the clip, pick a vibe, and get a hook-first reel with cuts on the beat.",
-    points: ["Hook in the first second", "Trending sound, synced cuts", "Captions in your language"],
+    headline: "Post daily without burning out.",
+    pain: "Editing eats the hours you meant to spend shooting.",
+    points: ["Hook in the first second, every time", "Trending sound, cuts on the beat", "Captions in Hindi, Telugu, Tamil or English"],
+    math: `${priceLabel} a reel. Cheaper than a coffee run.`,
     vibe: "energetic" as VibeId,
     sample: "Street food vlog → 15s reel",
     video: sampleClips.ramen,
@@ -213,34 +217,103 @@ export const audiences = [
   {
     id: "businesses",
     label: "Businesses",
-    headline: "Your shop, reel-ready.",
-    body: "Turn a phone clip of your product into a promo with the offer on screen.",
-    points: ["Product first, offer last", "Clean captions customers can read", "Square and wide formats too"],
+    headline: "No editor on payroll. Still look pro.",
+    pain: "You know your product. You don't have time to learn editing.",
+    points: ["Product first, offer on screen", "Clean captions customers can read", "Square and wide versions too"],
+    math: `One reel, ${priceLabel}. No retainer, no monthly fee.`,
     vibe: "cinematic" as VibeId,
-    sample: "Café counter clip → promo",
+    // TODO: swap for a real chai stall / shop clip.
+    sample: "Chai stall morning rush → promo",
     video: sampleClips.coffee,
-    words: ["fresh", "brew", "every", "morning"],
-  },
-  {
-    id: "personal",
-    label: "Personal",
-    headline: "Memories worth rewatching.",
-    body: "Birthdays, trips and family moments, cut into something you'll actually share.",
-    points: ["Finds the best moment for you", "Soft grade, gentle music", "Ready for WhatsApp status"],
-    vibe: "emotional" as VibeId,
-    sample: "Day out clip → 30s memory",
-    video: sampleClips.friends,
-    words: ["best", "day", "with", "you"],
+    words: ["fresh", "chai", "every", "morning"],
   },
   {
     id: "agencies",
     label: "Agencies",
-    headline: "First cuts without the queue.",
-    body: "Send clients a storyboard before you spend a rupee, then tweak the result.",
-    points: ["Edit plan before every render", "Revisions with one tap", "Three formats from one clip"],
+    headline: "50 client reels a week, same quality.",
+    pain: "First cuts pile up and your editors become the bottleneck.",
+    points: ["Storyboard to send before every render", "Revisions with one tap", "Same look across every client reel"],
+    math: `50 reels × ${priceLabel} = ${formatINR(PRICE * 50)} a week.`,
     vibe: "aesthetic" as VibeId,
     sample: "Brand shoot → client cut",
     video: sampleClips.nightPortrait,
     words: ["new", "drop", "out", "now"],
   },
+  {
+    id: "personal",
+    label: "Personal",
+    headline: "Your trip clips, finally posted.",
+    pain: "Hundreds of clips sit in your gallery because editing feels like work.",
+    points: ["Finds the best moment for you", "Soft grade, the right song", "Ready for Instagram or WhatsApp status"],
+    math: `${priceLabel} to turn a memory into a post.`,
+    vibe: "emotional" as VibeId,
+    sample: "Goa trip → 30s memory",
+    video: sampleClips.beachSunset,
+    words: ["best", "trip", "of", "2026"],
+  },
 ];
+
+export type DemoShot = { label: string; caption: string; clip: string; at: number };
+
+/**
+ * Pre-made storyboards for the "try it with a sample clip" demo.
+ * TODO: replace placeholder stock clips with real Indian sample footage
+ * (wedding, chai stall) once those assets exist.
+ */
+export const demoStoryboards: Record<VibeId, { title: string; shots: DemoShot[]; reel: string; words: [string, string, string, string] }> = {
+  energetic: {
+    title: "Street food vlog",
+    shots: [
+      { label: "Hook", caption: "First bite is UNREAL", clip: sampleClips.ramen, at: 2 },
+      { label: "Build-up", caption: "Straight off the tawa", clip: sampleClips.foodPose, at: 1 },
+      { label: "Big moment", caption: "Wait for it…", clip: sampleClips.ramen, at: 6 },
+      { label: "Reactions", caption: "10/10, no notes", clip: sampleClips.friends, at: 3 },
+    ],
+    reel: sampleClips.ramen,
+    words: ["first", "bite", "is", "UNREAL"],
+  },
+  cinematic: {
+    title: "City at night",
+    shots: [
+      { label: "Hook", caption: "The city wakes up at night", clip: sampleClips.nightPortrait, at: 1 },
+      { label: "Build-up", caption: "Neon, noise, no plans", clip: sampleClips.nightPortrait, at: 4 },
+      { label: "Big moment", caption: "Then the beat drops", clip: sampleClips.dance, at: 3 },
+      { label: "Reactions", caption: "Same time tomorrow?", clip: sampleClips.friends, at: 5 },
+    ],
+    reel: sampleClips.nightPortrait,
+    words: ["city", "after", "dark", "hits"],
+  },
+  emotional: {
+    title: "Wedding day", // TODO: real wedding footage
+    shots: [
+      { label: "Hook", caption: "The moment she turned around", clip: sampleClips.beachSunset, at: 2 },
+      { label: "Build-up", caption: "Everyone we love, one place", clip: sampleClips.friends, at: 2 },
+      { label: "Big moment", caption: "Forever starts here", clip: sampleClips.beachSunset, at: 6 },
+      { label: "Reactions", caption: "Nani couldn't stop smiling", clip: sampleClips.foodPose, at: 4 },
+    ],
+    reel: sampleClips.beachSunset,
+    words: ["this", "moment", "stays", "forever"],
+  },
+  funny: {
+    title: "Chai stall banter", // TODO: real chai stall footage
+    shots: [
+      { label: "Hook", caption: "Bhaiya, one cutting chai", clip: sampleClips.foodPose, at: 1 },
+      { label: "Build-up", caption: "The pour. The drama.", clip: sampleClips.coffee, at: 3 },
+      { label: "Big moment", caption: "Wait for it…", clip: sampleClips.foodPose, at: 5 },
+      { label: "Reactions", caption: "Okay that was too good", clip: sampleClips.friends, at: 6 },
+    ],
+    reel: sampleClips.foodPose,
+    words: ["wait", "for", "it", "LOL"],
+  },
+  aesthetic: {
+    title: "Slow Sunday at home",
+    shots: [
+      { label: "Hook", caption: "Sunday, but make it slow", clip: sampleClips.flowers, at: 1 },
+      { label: "Build-up", caption: "Filter coffee first", clip: sampleClips.coffee, at: 2 },
+      { label: "Big moment", caption: "Golden hour on the balcony", clip: sampleClips.flowers, at: 5 },
+      { label: "Reactions", caption: "Do nothing. Repeat.", clip: sampleClips.beachSunset, at: 3 },
+    ],
+    reel: sampleClips.flowers,
+    words: ["soft", "sunday", "slow", "living"],
+  },
+};

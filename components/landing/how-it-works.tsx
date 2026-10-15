@@ -6,6 +6,7 @@ import { vibes } from "@/lib/mock-data";
 import { BeatBars } from "../beat-bars";
 import { DrawLine, FlipIn, Words } from "../scroll-fx";
 import { TiltCard } from "../tilt-card";
+import { priceLabel } from "@/lib/pricing";
 
 const cycle = { duration: 3.2, repeat: Infinity, ease: "easeInOut" as const };
 
@@ -77,7 +78,7 @@ function ReelArt() {
 const steps = [
   { title: "Upload", body: "Drop in any clip under a minute. Straight from your phone is perfect.", art: <UploadArt /> },
   { title: "Tap your vibe", body: "Pick a mood, a sound, captions and length. No prompts, no timeline.", art: <VibeArt /> },
-  { title: "Get your reel", body: "Approve the edit plan, then download a reel that's ready to post.", art: <ReelArt /> },
+  { title: `Approve, pay ${priceLabel}, post`, body: "See the edit plan first. Pay only if you like it, then download.", art: <ReelArt /> },
 ];
 
 export function HowItWorks() {

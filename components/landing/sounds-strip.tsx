@@ -7,6 +7,7 @@ import { songs } from "@/lib/mock-data";
 import { BeatBars } from "../beat-bars";
 import { ScrollMarquee, Words } from "../scroll-fx";
 import { SongCard } from "../song-card";
+import { priceLabel } from "@/lib/pricing";
 
 const BARS = 28;
 /** Repeating height pattern so the backdrop reads as an equaliser, not noise. */
@@ -45,7 +46,7 @@ export function SoundsStrip() {
   }, [travel]);
 
   return (
-    <section ref={section} className="relative h-[320vh] motion-reduce:h-auto motion-reduce:py-20">
+    <section ref={section} className="relative h-[260vh] motion-reduce:h-auto motion-reduce:py-20">
       <div className="sticky top-0 flex h-svh flex-col justify-center overflow-hidden motion-reduce:static motion-reduce:h-auto">
         <ScrollMarquee text="On the beat" progress={scrollYProgress} className="absolute inset-x-0 top-[8%] opacity-60 motion-reduce:hidden" />
 
@@ -69,7 +70,7 @@ export function SoundsStrip() {
           <h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-6xl">
             <Words text="Trending sounds," accent="built in." />
           </h2>
-          <p className="mt-3 max-w-lg text-lg text-mist">Tap play for a 15-second preview. Your cuts land on every beat.</p>
+          <p className="mt-3 max-w-lg text-lg text-mist">Tap play for a 15-second preview. Every sound is included in {priceLabel}.</p>
         </div>
 
         <div className="no-scrollbar relative mt-10 motion-reduce:overflow-x-auto">

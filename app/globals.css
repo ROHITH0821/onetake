@@ -61,6 +61,8 @@
   --color-pink: #ec4899;
   --color-orange: #f97316;
   --color-mint: #34d399;
+  /* Price accent: used only by the ₹99 badge, so it stays the loudest thing on the page. */
+  --color-price: #c6f24e;
   --color-raw-1: #3d3b36;
   --color-raw-2: #5a554b;
   --color-raw-3: #25241f;

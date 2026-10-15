@@ -5,6 +5,7 @@ import { Check } from "lucide-react";
 import { useState } from "react";
 import { audiences, vibeById } from "@/lib/mock-data";
 import { PhoneFrame } from "../phone-frame";
+import { PriceBadge } from "../price-badge";
 import { Reel } from "../reel";
 import { Reveal } from "../reveal";
 import { ScrollZoom, Words } from "../scroll-fx";
@@ -19,7 +20,7 @@ export function AudienceTabs() {
       <div className="mx-auto max-w-5xl">
         <Reveal>
           <h2 className="text-4xl font-semibold tracking-tight sm:text-6xl">
-            <Words text="Made for" accent="everyone." />
+            <Words text="Whatever you shoot," accent="sorted." />
           </h2>
           <div role="tablist" aria-label="Who it's for" className="no-scrollbar -mx-4 mt-8 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:px-0">
             {audiences.map((a) => {
@@ -56,7 +57,7 @@ export function AudienceTabs() {
               >
                 <div>
                   <h3 className="text-3xl font-semibold tracking-tight sm:text-4xl">{current.headline}</h3>
-                  <p className="mt-3 max-w-md text-lg text-mist">{current.body}</p>
+                  <p className="mt-3 max-w-md text-lg text-mist">{current.pain}</p>
                   <ul className="mt-6 space-y-3">
                     {current.points.map((p) => (
                       <li key={p} className="flex items-center gap-3">
@@ -67,6 +68,9 @@ export function AudienceTabs() {
                       </li>
                     ))}
                   </ul>
+                  <p className="mt-6 inline-flex flex-wrap items-center gap-2 rounded-2xl bg-white/5 px-4 py-3 text-sm font-medium">
+                    <PriceBadge size="sm" /> {current.math}
+                  </p>
                 </div>
                 <div className="mx-auto w-[min(60vw,15rem)]">
                   <PhoneFrame>

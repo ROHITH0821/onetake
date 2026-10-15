@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionTemplate, useMotionValue, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import { motion, type MotionValue, useMotionTemplate, useMotionValue, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { ChevronsLeftRight } from "lucide-react";
 import { useRef } from "react";
 import { cn } from "@/lib/utils";
@@ -10,6 +10,8 @@ type BeforeAfterSliderProps = {
   after: React.ReactNode;
   /** Wipe automatically as the slider scrolls into view, until the user grabs it. */
   scrollWipe?: boolean;
+  /** Extra layer drawn above both clips; receives the handle position (0–100). */
+  overlay?: (pos: MotionValue<number>) => React.ReactNode;
   className?: string;
 };
 
@@ -17,7 +19,7 @@ type BeforeAfterSliderProps = {
  * Drag (or arrow-key) the handle to wipe between two layers.
  * Position lives in a motion value, so wiping never re-renders React.
  */
-export function BeforeAfterSlider({ before, after, scrollWipe = false, className }: BeforeAfterSliderProps) {
+export function BeforeAfterSlider({ before, after, scrollWipe = false, overlay, className }: BeforeAfterSliderProps) {
   const start = scrollWipe ? 96 : 50;
   const pos = useMotionValue(start);
   const ref = useRef<HTMLDivElement>(null);
@@ -44,6 +46,8 @@ export function BeforeAfterSlider({ before, after, scrollWipe = false, className
       <motion.div className="absolute inset-0" style={{ clipPath }}>
         {before}
       </motion.div>
+
+      {overlay?.(pos)}
 
       <motion.span className="absolute left-3 top-3 rounded-full bg-black/60 px-2.5 py-1 text-xs font-medium" style={{ opacity: rawLabel }}>
         Raw clip

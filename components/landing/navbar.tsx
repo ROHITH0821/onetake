@@ -5,11 +5,13 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { GradientButton } from "../gradient-button";
 import { Logo } from "../logo";
+import { PriceBadge } from "../price-badge";
+import { CTA_LABEL, priceLabel } from "@/lib/pricing";
 
 const links = [
   { href: "#how-it-works", label: "How it works" },
-  { href: "#examples", label: "Examples" },
-  { href: "#pricing", label: "Pricing" },
+  { href: "#demo", label: "Try a sample" },
+  { href: "#faq", label: "FAQ" },
 ];
 
 export function Navbar() {
@@ -45,8 +47,12 @@ export function Navbar() {
             ))}
           </ul>
           <div className="flex items-center gap-1.5">
+            <a href="#pricing" aria-label={`Pricing: ${priceLabel} per reel`} className="rounded-full transition-transform hover:scale-105 max-[359px]:hidden">
+              <PriceBadge size="sm" />
+            </a>
             <GradientButton href="/create/upload" size="sm" className="max-[359px]:px-3 max-[359px]:text-xs">
-              Edit my video
+              <span className="lg:hidden">Edit my video</span>
+              <span className="hidden lg:inline">{CTA_LABEL}</span>
             </GradientButton>
             <button
               type="button"
@@ -68,7 +74,7 @@ export function Navbar() {
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             >
-              {links.map((l) => (
+              {[...links, { href: "#pricing", label: `Pricing · ${priceLabel}` }].map((l) => (
                 <li key={l.href}>
                   <a href={l.href} onClick={() => setOpen(false)} className="block rounded-xl px-3 py-3 text-base hover:bg-white/10">
                     {l.label}

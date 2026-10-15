@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { vibes, type Vibe } from "@/lib/mock-data";
 import { Words } from "../scroll-fx";
 import { VibeCard } from "../vibe-card";
+import { priceLabel } from "@/lib/pricing";
 
 // The track holds still for the first and last 10% of the pin, so the
 // first and last cards get their moment before the page moves on.
@@ -78,7 +79,7 @@ export function VibeShowcase() {
   const current = vibes[active];
 
   return (
-    <section ref={section} className="relative h-[420vh] motion-reduce:h-auto motion-reduce:py-20">
+    <section ref={section} className="relative h-[340vh] motion-reduce:h-auto motion-reduce:py-20">
       <div className="sticky top-0 flex h-svh flex-col justify-center overflow-hidden motion-reduce:static motion-reduce:h-auto">
         {vibes.map((v, i) => (
           <div
@@ -93,6 +94,7 @@ export function VibeShowcase() {
           <h2 className="text-4xl font-semibold tracking-tight sm:text-6xl">
             <Words text="Pick a vibe," accent="not a preset." />
           </h2>
+          <p className="mt-2 text-sm text-mist">All vibes and sounds included in {priceLabel}.</p>
           <div className="mt-3 flex h-8 items-center gap-3 text-lg motion-reduce:hidden" aria-live="polite">
             <span className="font-mono text-sm text-mist">
               0{active + 1} / 0{vibes.length}

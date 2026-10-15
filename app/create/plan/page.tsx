@@ -7,6 +7,7 @@ import { GradientButton } from "@/components/gradient-button";
 import { StoryboardStrip } from "@/components/storyboard-strip";
 import { formatTime, reelSeconds, useFlow } from "@/lib/flow-store";
 import { clipTypes, editPlans, songs, vibeById } from "@/lib/mock-data";
+import { priceLabel } from "@/lib/pricing";
 
 export default function PlanPage() {
   const { state } = useFlow();
@@ -35,7 +36,7 @@ export default function PlanPage() {
       back="/create/extras"
       footer={
         <GradientButton size="lg" onClick={() => router.push("/create/editing")}>
-          <Sparkles className="hover:translate-x-0!" /> Make my reel
+          <Sparkles className="hover:translate-x-0!" /> Approve · {priceLabel}
         </GradientButton>
       }
     >
@@ -59,7 +60,7 @@ export default function PlanPage() {
           </ul>
           {state.note.trim() && <p className="mt-4 border-l-2 border-pink pl-3 text-sm text-mist">“{state.note.trim()}”</p>}
         </div>
-        <p className="mt-4 text-sm text-mist">This is where you&apos;d pay. Payments aren&apos;t connected in this demo, so go ahead.</p>
+        <p className="mt-4 text-sm text-mist">You only pay {priceLabel} if this plan looks right. Payments aren&apos;t connected in this demo yet, so go ahead.</p>
       </div>
     </StepShell>
   );
