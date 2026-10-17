@@ -1,15 +1,15 @@
 import { appendFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 import { validateEarlyAccess } from "@/lib/early-access";
+import { emailConfigured, sendSignupEmail } from "@/lib/notify-email";
 
 /**
- * Early-access sign-ups.
- *
- * Production: set EARLY_ACCESS_WEBHOOK_URL (a Google Sheets Apps Script URL,
- * Zapier/Make webhook, Formspree endpoint, etc.). Each sign-up is POSTed there
- * as JSON.
- * Development: with no webhook set, sign-ups are appended to
- * data/early-access.jsonl (git-ignored) so the form works locally.
+ * Early-access sign-ups. Each one is sent to every configured destination:
+ * - Email to the team via Resend (RESEND_API_KEY, RESEND_FROM_EMAIL,
+ *   EARLY_ACCESS_NOTIFY_EMAILS).
+ * - Optional JSON webhook (EARLY_ACCESS_WEBHOOK_URL), e.g. a Google Sheet.
+ * - In development only, a local data/early-access.jsonl file (git-ignored).
+ * The request succeeds if at least one destination stored it.
  */
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
@@ -29,25 +29,29 @@ export async function POST(request: Request) {
 
   const entry = { ...data, createdAt: new Date().toISOString(), source: "landing" };
   const webhook = process.env.EARLY_ACCESS_WEBHOOK_URL;
+  const tasks: Promise<unknown>[] = [];
 
-  try {
-    if (webhook) {
-      const res = await fetch(webhook, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(entry),
-      });
-      if (!res.ok) throw new Error(`Webhook responded ${res.status}`);
-    } else if (process.env.NODE_ENV !== "production") {
-      const dir = path.join(process.cwd(), "data");
-      await mkdir(dir, { recursive: true });
-      await appendFile(path.join(dir, "early-access.jsonl"), `${JSON.stringify(entry)}\n`);
-    } else {
-      console.error("EARLY_ACCESS_WEBHOOK_URL is not set; sign-up not stored.");
-      return Response.json({ error: "Sign-ups aren't open yet. Please try again soon." }, { status: 503 });
-    }
-  } catch (err) {
-    console.error("Failed to store early-access sign-up", err);
+  if (emailConfigured()) tasks.push(sendSignupEmail(entry));
+  if (webhook) {
+    tasks.push(
+      fetch(webhook, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(entry) }).then((res) => {
+        if (!res.ok) throw new Error(`Webhook responded ${res.status}`);
+      }),
+    );
+  }
+  if (process.env.NODE_ENV !== "production") {
+    const dir = path.join(process.cwd(), "data");
+    tasks.push(mkdir(dir, { recursive: true }).then(() => appendFile(path.join(dir, "early-access.jsonl"), `${JSON.stringify(entry)}\n`)));
+  }
+
+  if (tasks.length === 0) {
+    console.error("No early-access destination configured; sign-up not stored.");
+    return Response.json({ error: "Sign-ups aren't open yet. Please try again soon." }, { status: 503 });
+  }
+
+  const results = await Promise.allSettled(tasks);
+  results.forEach((r) => r.status === "rejected" && console.error("Early-access destination failed:", r.reason));
+  if (!results.some((r) => r.status === "fulfilled")) {
     return Response.json({ error: "Something went wrong. Please try again." }, { status: 502 });
   }
 
