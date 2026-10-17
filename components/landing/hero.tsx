@@ -14,7 +14,7 @@ import { EarlyAccessButton } from "../early-access/early-access";
 const loop = { duration: 8, repeat: Infinity, times: [0, 0.28, 0.42, 0.92, 1], ease: "easeInOut" as const };
 const easeOut = [0.16, 1, 0.3, 1] as const;
 /** Entrance waits for the intro curtain to lift. */
-const INTRO = 1.25;
+const INTRO = 0.45;
 
 const badges = [
   { icon: Scissors, label: "Cuts on the beat", className: "-left-6 top-[16%] sm:-left-20", delay: 0 },

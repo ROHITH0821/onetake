@@ -1,7 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { whatWeDo } from "@/lib/content";
+import { lite } from "@/lib/mock-data";
 import { EDITOR_PRICE_FROM } from "@/lib/pricing";
 import { cn } from "@/lib/utils";
 import { PriceBadge } from "../price-badge";
@@ -13,8 +15,39 @@ const LOOP = 4;
 const loop = (times: number[]) => ({ duration: LOOP, repeat: Infinity, times, ease: "easeInOut" as const });
 
 /** A still frame from the sample clip. */
+/**
+ * A still frame from the sample clip, at 360p. Nothing is fetched until the
+ * card is near the screen, so these don't compete with the hero on load.
+ */
 function Frame({ clip, at, className }: { clip: string; at: number; className?: string }) {
-  return <video src={`${clip}#t=${at}`} preload="metadata" muted playsInline className={cn("absolute inset-0 size-full object-cover", className)} />;
+  const ref = useRef<HTMLVideoElement>(null);
+  const [near, setNear] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setNear(true);
+        observer.disconnect();
+      },
+      { rootMargin: "300px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      src={near ? `${lite(clip)}#t=${at}` : undefined}
+      preload="metadata"
+      muted
+      playsInline
+      className={cn("absolute inset-0 size-full object-cover", className)}
+    />
+  );
 }
 
 function Tag({ children, tone = "dark", className }: { children: React.ReactNode; tone?: "dark" | "price" | "bad"; className?: string }) {

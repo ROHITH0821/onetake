@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { BeatBars } from "./beat-bars";
 import { LazyVideo } from "./lazy-video";
+import { lite } from "@/lib/mock-data";
 
 const subjects = [
   "left-1/2 bottom-0 h-[58%] w-[46%] -translate-x-1/2",
@@ -62,7 +63,7 @@ export function Reel({
         <div className="absolute inset-0 animate-shake bg-linear-to-b from-raw-2 via-raw-1 to-raw-3">
           {video ? (
             <LazyVideo
-              src={video}
+              src={lite(video)}
               sync={sync}
               className="size-full object-cover brightness-[0.62] contrast-[0.82] saturate-[0.35] sepia-[0.25]"
             />

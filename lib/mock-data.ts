@@ -6,6 +6,9 @@ import { formatINR, PRICE, priceLabel } from "./pricing";
 // streamed from their CDN. Replace with your own sample reels before launch.
 const clip = (id: number) => `https://assets.mixkit.co/videos/${id}/${id}-720.mp4`;
 
+/** Same clip at 360p (~1 MB instead of 3–6 MB): for thumbnails and the deliberately dull "raw" takes. */
+export const lite = (url: string) => url.replace(/-720\.mp4$/, "-360.mp4");
+
 export const sampleClips = {
   dance: clip(42324),
   nightPortrait: clip(1231),
