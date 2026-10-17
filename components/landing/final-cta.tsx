@@ -1,9 +1,9 @@
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { CTA_LABEL, GUARANTEE } from "@/lib/pricing";
+import { finalCta, footer, nav } from "@/lib/content";
+import { CTA_LABEL, CTA_SHORT } from "@/lib/pricing";
 import { Logo } from "../logo";
-import { PriceBadge } from "../price-badge";
 import { ScrollZoom, Words } from "../scroll-fx";
+import { EarlyAccessButton } from "../early-access/early-access";
 
 export function FinalCta() {
   return (
@@ -12,21 +12,18 @@ export function FinalCta() {
         <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] bg-brand px-6 py-16 text-center sm:py-24">
           <div className="pointer-events-none absolute -right-20 -top-20 size-72 rounded-full bg-white/25 blur-3xl" aria-hidden />
           <div className="pointer-events-none absolute -bottom-24 -left-16 size-72 rounded-full bg-ink/30 blur-3xl" aria-hidden />
-          <h2 className="relative text-[clamp(2.25rem,9vw,5rem)] font-semibold leading-[0.98] tracking-tight">
-            <Words text="Got a clip?" />
-            <br />
-            <Words text="Make it a reel" delay={0.2} />
+          <h2 className="relative mx-auto max-w-3xl text-[clamp(2rem,7vw,4.25rem)] font-semibold leading-[1.02] tracking-tight">
+            <Words text={finalCta.headline} /> <Words text={finalCta.headlineEnd} delay={0.2} />
           </h2>
-          <div className="relative mt-4 flex items-center justify-center gap-3 text-2xl font-semibold sm:text-3xl">
-            for <PriceBadge size="lg" className="shadow-[0_0_40px_-4px_var(--color-price)]" />
-          </div>
-          <Link
-            href="/create/upload"
-            className="relative mt-8 inline-flex h-14 items-center gap-2 rounded-full bg-white px-8 text-lg font-semibold whitespace-nowrap text-ink shadow-xl transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97] max-[359px]:px-5 max-[359px]:text-base"
+          <p className="relative mx-auto mt-4 max-w-md text-lg text-white/90">{finalCta.subtext}</p>
+          <EarlyAccessButton
+            variant="plain"
+            className="relative mt-8 inline-flex h-14 items-center gap-2 rounded-full bg-white px-8 text-lg font-semibold whitespace-nowrap text-ink shadow-xl transition-transform duration-200 hover:scale-[1.03] active:scale-[0.97]"
           >
-            {CTA_LABEL} <ArrowRight className="size-5" />
-          </Link>
-          <p className="relative mt-4 text-white/85">{GUARANTEE}</p>
+            <span className="max-[359px]:hidden">{CTA_LABEL}</span>
+            <span className="min-[360px]:hidden">{CTA_SHORT}</span>
+            <ArrowRight className="size-5" />
+          </EarlyAccessButton>
         </div>
       </ScrollZoom>
     </section>
@@ -39,13 +36,14 @@ export function Footer() {
       <div className="mx-auto flex max-w-5xl flex-col items-start justify-between gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
         <div>
           <Logo />
-          <p className="mt-2 text-sm text-mist">For everyone with a clip and a story.</p>
+          <p className="mt-2 max-w-xs text-sm text-mist">{footer.tagline}</p>
         </div>
         <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-mist">
-          <a href="#how-it-works" className="whitespace-nowrap hover:text-foreground">How it works</a>
-          <a href="#demo" className="whitespace-nowrap hover:text-foreground">Try a sample</a>
-          <a href="#pricing" className="whitespace-nowrap hover:text-foreground">Pricing</a>
-          <a href="#faq" className="whitespace-nowrap hover:text-foreground">FAQ</a>
+          {nav.map((l) => (
+            <a key={l.href} href={l.href} className="whitespace-nowrap hover:text-foreground">
+              {l.label}
+            </a>
+          ))}
         </nav>
       </div>
     </footer>

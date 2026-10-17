@@ -51,7 +51,7 @@ export default function VibePage() {
             </ul>
           </Field>
 
-          <Field label="Trending sound" hint="15s previews">
+          <Field label="Trending sound" hint="15s previews · demo sounds">
             <ul className="no-scrollbar flex snap-x gap-3 overflow-x-auto px-4 py-3 sm:px-6">
               {songs.map((s) => (
                 <li key={s.id} className="shrink-0">
@@ -66,6 +66,7 @@ export default function VibePage() {
                 </li>
               ))}
             </ul>
+            <p className="px-4 text-xs text-mist sm:px-6">Demo sounds are synthesised placeholders, not licensed tracks.</p>
           </Field>
 
           <Field label="Captions">

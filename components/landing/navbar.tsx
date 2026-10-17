@@ -3,16 +3,12 @@
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { GradientButton } from "../gradient-button";
 import { Logo } from "../logo";
-import { PriceBadge } from "../price-badge";
-import { CTA_LABEL, priceLabel } from "@/lib/pricing";
+import { nav } from "@/lib/content";
+import { CTA_LABEL, CTA_SHORT } from "@/lib/pricing";
+import { EarlyAccessButton } from "../early-access/early-access";
 
-const links = [
-  { href: "#how-it-works", label: "How it works" },
-  { href: "#demo", label: "Try a sample" },
-  { href: "#faq", label: "FAQ" },
-];
+const links = nav;
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -37,26 +33,23 @@ export function Navbar() {
       <nav className="glass-blur mx-auto max-w-5xl rounded-3xl px-2 py-2 sm:px-4" aria-label="Main">
         <div className="flex items-center justify-between gap-2">
           <Logo className="pl-1 max-[359px]:text-lg" />
-          <ul className="hidden items-center gap-1 md:flex">
+          <ul className="hidden items-center lg:flex">
             {links.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="rounded-full px-4 py-2 text-sm text-mist transition-colors hover:bg-white/10 hover:text-foreground">
+                <a href={l.href} className="rounded-full px-3 py-2 text-sm whitespace-nowrap text-mist transition-colors hover:bg-white/10 hover:text-foreground">
                   {l.label}
                 </a>
               </li>
             ))}
           </ul>
           <div className="flex items-center gap-1.5">
-            <a href="#pricing" aria-label={`Pricing: ${priceLabel} per reel`} className="rounded-full transition-transform hover:scale-105 max-[359px]:hidden">
-              <PriceBadge size="sm" />
-            </a>
-            <GradientButton href="/create/upload" size="sm" className="max-[359px]:px-3 max-[359px]:text-xs">
-              <span className="lg:hidden">Edit my video</span>
-              <span className="hidden lg:inline">{CTA_LABEL}</span>
-            </GradientButton>
+            <EarlyAccessButton size="sm" className="max-[359px]:px-3 max-[359px]:text-xs">
+              <span className="max-[399px]:hidden">{CTA_LABEL}</span>
+              <span className="min-[400px]:hidden">{CTA_SHORT}</span>
+            </EarlyAccessButton>
             <button
               type="button"
-              className="grid size-10 place-items-center rounded-full transition-colors hover:bg-white/10 md:hidden"
+              className="grid size-10 place-items-center rounded-full transition-colors hover:bg-white/10 lg:hidden"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               onClick={() => setOpen((o) => !o)}
@@ -68,13 +61,13 @@ export function Navbar() {
         <AnimatePresence initial={false}>
           {open && (
             <motion.ul
-              className="overflow-hidden md:hidden"
+              className="overflow-hidden lg:hidden"
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             >
-              {[...links, { href: "#pricing", label: `Pricing · ${priceLabel}` }].map((l) => (
+              {links.map((l) => (
                 <li key={l.href}>
                   <a href={l.href} onClick={() => setOpen(false)} className="block rounded-xl px-3 py-3 text-base hover:bg-white/10">
                     {l.label}

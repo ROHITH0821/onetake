@@ -2,9 +2,9 @@
 
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
 import { PriceBadge } from "../price-badge";
+import { EarlyAccessButton } from "../early-access/early-access";
 
 /**
  * Mobile-only bottom bar. Appears once the hero is behind you and steps
@@ -34,12 +34,12 @@ export function StickyCta() {
             <span className="flex items-center gap-2 text-sm font-semibold">
               Your reel for <PriceBadge size="sm" />
             </span>
-            <Link
-              href="/create/upload"
+            <EarlyAccessButton
+              variant="plain"
               className="inline-flex h-11 items-center gap-1.5 rounded-xl bg-brand px-4 text-sm font-semibold whitespace-nowrap text-white active:scale-95"
             >
               Edit my video <ArrowRight className="size-4" />
-            </Link>
+            </EarlyAccessButton>
           </div>
         </motion.div>
       )}

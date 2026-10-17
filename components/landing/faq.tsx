@@ -3,19 +3,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useId, useState } from "react";
-import { priceLabel } from "@/lib/pricing";
+import { faq } from "@/lib/content";
 import { Words } from "../scroll-fx";
-
-const faqs = [
-  { q: "How much does it cost?", a: `${priceLabel} per reel. No subscription, no hidden fees.` },
-  { q: "What if I don't like the edit?", a: "You approve the plan first. You don't pay for what you don't approve." },
-  { q: "Will it cut out the good part?", a: "The storyboard shows exactly which moments are used, in order, before anything is made." },
-  { q: "My clip is in Hindi / Telugu / Tamil.", a: "Captions come in your language. Pick it when you choose your vibe." },
-  // TODO: replace with the real privacy policy summary.
-  { q: "Is my video private?", a: "Placeholder: details on how clips are stored and deleted are coming soon." },
-  // TODO: confirm supported payment methods.
-  { q: "How do I pay?", a: "Placeholder: UPI and cards, at the moment you approve your plan." },
-];
 
 function Item({ q, a, open, onToggle }: { q: string; a: string; open: boolean; onToggle: () => void }) {
   const id = useId();
@@ -58,10 +47,10 @@ export function Faq() {
     <section id="faq" className="px-4 py-20 sm:px-6 sm:py-28">
       <div className="mx-auto max-w-3xl">
         <h2 className="text-4xl font-semibold tracking-tight sm:text-6xl">
-          <Words text="Fair" accent="questions." />
+          <Words text={faq.title} accent={faq.titleAccent} />
         </h2>
         <ul className="mt-8 border-t border-white/10">
-          {faqs.map((f, i) => (
+          {faq.items.map((f, i) => (
             <Item key={f.q} q={f.q} a={f.a} open={open === i} onToggle={() => setOpen(open === i ? -1 : i)} />
           ))}
         </ul>

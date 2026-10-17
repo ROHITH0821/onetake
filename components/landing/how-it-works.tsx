@@ -78,7 +78,7 @@ function ReelArt() {
 const steps = [
   { title: "Upload", body: "Drop in any clip under a minute. Straight from your phone is perfect.", art: <UploadArt /> },
   { title: "Tap your vibe", body: "Pick a mood, a sound, captions and length. No prompts, no timeline.", art: <VibeArt /> },
-  { title: `Approve, pay ${priceLabel}, post`, body: "See the edit plan first. Pay only if you like it, then download.", art: <ReelArt /> },
+  { title: "Get your reel", body: `See the edit plan first, pay ${priceLabel} only if you like it, then download.`, art: <ReelArt /> },
 ];
 
 export function HowItWorks() {

@@ -1,13 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { MotionProvider } from "@/components/reveal";
+import { meta } from "@/lib/content";
 import "./globals.css";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "OneTake — AI video editing for reels",
-  description: "Upload your clip. Tap your vibe. Get a reel worth posting.",
+  title: meta.title,
+  description: meta.description,
 };
 
 export const viewport: Viewport = {

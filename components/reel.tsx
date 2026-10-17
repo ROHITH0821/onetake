@@ -29,6 +29,8 @@ type ReelProps = {
   words?: readonly string[];
   captions?: boolean;
   beat?: boolean;
+  /** Clip length shown on the raw take. */
+  time?: string;
   className?: string;
 };
 
@@ -45,6 +47,7 @@ export function Reel({
   words,
   captions = true,
   beat = true,
+  time = "0:47",
   className,
 }: ReelProps) {
   if (variant === "raw") {
@@ -76,7 +79,7 @@ export function Reel({
           REC
         </div>
         <div className="absolute right-3 top-3 rounded-full bg-black/50 px-2 py-1 font-mono text-[10px] text-white/70">
-          0:47
+          {time}
         </div>
       </div>
     );
