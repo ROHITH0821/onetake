@@ -20,6 +20,10 @@ export function RichText({ text }: { text: string }) {
           <Link key={i} href={href} className={cls}>
             {m[2]}
           </Link>
+        ) : href.startsWith("mailto:") ? (
+          <a key={i} href={href} className={cls}>
+            {m[2]}
+          </a>
         ) : (
           <a key={i} href={href} className={cls} rel="noopener noreferrer" target="_blank">
             {m[2]}

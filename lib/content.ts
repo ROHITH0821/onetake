@@ -18,6 +18,12 @@ export const nav = [
   { href: "/blog", label: "Blog" },
 ];
 
+export const legalNav = [
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" },
+  { href: "/contact", label: "Contact" },
+];
+
 /** Section anchors stay in-page on the homepage and point back to it elsewhere. */
 export const navHref = (href: string, onHome: boolean) => (href.startsWith("#") && !onHome ? `/${href}` : href);
 

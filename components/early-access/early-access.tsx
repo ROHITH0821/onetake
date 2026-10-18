@@ -7,6 +7,7 @@ import { Check, LoaderCircle, X } from "lucide-react";
 import { createContext, useCallback, useContext, useEffect, useId, useRef, useState } from "react";
 import { earlyAccess } from "@/lib/content";
 import { ROLES, type FieldErrors, type Role } from "@/lib/early-access";
+import { PRIVACY_HREF } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { GradientButton } from "../gradient-button";
 
@@ -163,7 +164,12 @@ function EarlyAccessForm({ onClose }: { onClose: () => void }) {
       <GradientButton type="submit" size="lg" className="w-full" disabled={status === "sending"}>
         {status === "sending" ? <LoaderCircle className="animate-spin" /> : earlyAccess.submit}
       </GradientButton>
-      <p className="text-center text-xs text-mist">{earlyAccess.privacy}</p>
+      <p className="text-center text-xs text-mist">
+        {earlyAccess.privacy}{" "}
+        <Link href={PRIVACY_HREF} className="underline underline-offset-2 hover:text-foreground">
+          Privacy policy
+        </Link>
+      </p>
     </form>
   );
 }

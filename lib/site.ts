@@ -14,6 +14,10 @@ export const site = {
   language: "en-IN",
   ogImage: { url: "/og.png", width: 1200, height: 630, alt: "OneTake: Shot a clip? We'll make it a reel." },
   logo: "/apple-icon.png",
+  /** Who runs OneTake; named in the privacy policy and terms. */
+  operator: "Webaura India",
+  /** Public contact email for the contact, privacy and terms pages. Until it's set they show a "[contact email]" placeholder. */
+  contactEmail: "",
   /** Add real profile URLs here once they exist; they feed Organization.sameAs. */
   socialProfiles: [] as string[],
 } as const;
@@ -23,3 +27,7 @@ export const absoluteUrl = (path = "/") => new URL(path, `${site.url}/`).toStrin
 /** Where the "Edit my video for ₹99" CTA leads: the early-access form on the homepage. */
 export const EARLY_ACCESS_HREF = "/#early-access";
 export const PRICING_HREF = "/#pricing";
+
+export const PRIVACY_HREF = "/privacy";
+export const TERMS_HREF = "/terms";
+export const CONTACT_HREF = "/contact";

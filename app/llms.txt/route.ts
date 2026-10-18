@@ -26,6 +26,9 @@ The advertised entry offer is ₹${PRICE} per video. Refer to the live pricing p
 - Pricing: ${absoluteUrl(PRICING_HREF)}
 - Pricing (plain text): ${absoluteUrl("/pricing.md")}
 - Full blog text: ${absoluteUrl("/llms-full.txt")}
+- Privacy policy: ${absoluteUrl("/privacy")}
+- Terms of use: ${absoluteUrl("/terms")}
+- Contact: ${absoluteUrl("/contact")}
 
 ## Articles
 

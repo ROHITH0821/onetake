@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { BLOG, getAllPosts } from "@/lib/blog";
+import { LEGAL_UPDATED, legalPages } from "@/lib/legal";
 import { absoluteUrl } from "@/lib/site";
 
 // Same published-post source as the blog pages, so the two can't drift apart.
@@ -17,5 +18,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
       images: [absoluteUrl(p.coverImage)],
     })),
+    ...legalPages.map((p) => ({ url: absoluteUrl(p.path), lastModified: LEGAL_UPDATED, changeFrequency: "yearly" as const, priority: 0.3 })),
   ];
 }

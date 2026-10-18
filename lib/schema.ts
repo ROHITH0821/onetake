@@ -19,6 +19,9 @@ export function organizationSchema(): JsonLdObject {
     logo: absoluteUrl(site.logo),
     description: site.description,
     ...(site.socialProfiles.length ? { sameAs: site.socialProfiles } : {}),
+    ...(site.contactEmail
+      ? { contactPoint: { "@type": "ContactPoint", contactType: "customer support", email: site.contactEmail, url: absoluteUrl("/contact") } }
+      : {}),
   };
 }
 

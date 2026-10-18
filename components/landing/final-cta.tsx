@@ -1,6 +1,8 @@
 import { ArrowRight } from "lucide-react";
-import { finalCta, footer, nav, navHref } from "@/lib/content";
+import Link from "next/link";
+import { finalCta, footer, legalNav, nav, navHref } from "@/lib/content";
 import { CTA_LABEL, CTA_SHORT } from "@/lib/pricing";
+import { site } from "@/lib/site";
 import { Logo } from "../logo";
 import { ScrollZoom, Words } from "../scroll-fx";
 import { EarlyAccessButton } from "../early-access/early-access";
@@ -45,6 +47,20 @@ export function Footer({ onHome = true }: { onHome?: boolean }) {
             </a>
           ))}
         </nav>
+      </div>
+      <div className="mx-auto mt-6 flex max-w-5xl flex-wrap items-center justify-between gap-x-6 gap-y-2 text-xs text-mist">
+        <p>
+          {site.name} is run by {site.operator}.
+        </p>
+        <ul className="flex flex-wrap gap-x-5 gap-y-2">
+          {legalNav.map((l) => (
+            <li key={l.href}>
+              <Link href={l.href} className="hover:text-foreground">
+                {l.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </footer>
   );
