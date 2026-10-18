@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { finalCta, footer, nav } from "@/lib/content";
+import { finalCta, footer, nav, navHref } from "@/lib/content";
 import { CTA_LABEL, CTA_SHORT } from "@/lib/pricing";
 import { Logo } from "../logo";
 import { ScrollZoom, Words } from "../scroll-fx";
@@ -30,7 +30,7 @@ export function FinalCta() {
   );
 }
 
-export function Footer() {
+export function Footer({ onHome = true }: { onHome?: boolean }) {
   return (
     <footer className="px-4 pb-28 pt-8 sm:px-6 md:pb-10">
       <div className="mx-auto flex max-w-5xl flex-col items-start justify-between gap-6 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
@@ -40,7 +40,7 @@ export function Footer() {
         </div>
         <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-mist">
           {nav.map((l) => (
-            <a key={l.href} href={l.href} className="whitespace-nowrap hover:text-foreground">
+            <a key={l.href} href={navHref(l.href, onHome)} className="whitespace-nowrap hover:text-foreground">
               {l.label}
             </a>
           ))}

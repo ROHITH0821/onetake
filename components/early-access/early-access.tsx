@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useLenis } from "lenis/react";
+import Link from "next/link";
 import { Check, LoaderCircle, X } from "lucide-react";
 import { createContext, useCallback, useContext, useEffect, useId, useRef, useState } from "react";
 import { earlyAccess } from "@/lib/content";
@@ -181,6 +182,18 @@ export function EarlyAccessProvider({ children }: { children: React.ReactNode })
   }, []);
   const close = useCallback(() => setOpen(false), []);
 
+  // Links like /#early-access (e.g. from the blog) open the form on arrival.
+  useEffect(() => {
+    const openFromHash = () => {
+      if (window.location.hash !== "#early-access") return;
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+      setOpen(true);
+    };
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+    return () => window.removeEventListener("hashchange", openFromHash);
+  }, []);
+
   useEffect(() => {
     if (!open) return;
     lenis?.stop();
@@ -283,5 +296,26 @@ export function EarlyAccessButton({ children, className, variant = "gradient", s
     <GradientButton size={size} className={className} onClick={open} aria-haspopup="dialog">
       {children}
     </GradientButton>
+  );
+}
+
+/**
+ * A real link to the early-access form (/#early-access). Works without
+ * JavaScript; with it, opens the form in place when a provider is present.
+ */
+export function EarlyAccessLink({ children, className }: { children: React.ReactNode; className?: string }) {
+  const open = useContext(EarlyAccessContext);
+  return (
+    <Link
+      href="/#early-access"
+      className={className}
+      onClick={(e) => {
+        if (!open) return;
+        e.preventDefault();
+        open();
+      }}
+    >
+      {children}
+    </Link>
   );
 }

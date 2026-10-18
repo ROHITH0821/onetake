@@ -4,13 +4,13 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Logo } from "../logo";
-import { nav } from "@/lib/content";
+import { nav, navHref } from "@/lib/content";
 import { CTA_LABEL, CTA_SHORT } from "@/lib/pricing";
 import { EarlyAccessButton } from "../early-access/early-access";
 
 const links = nav;
 
-export function Navbar() {
+export function Navbar({ onHome = true }: { onHome?: boolean }) {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
@@ -36,7 +36,7 @@ export function Navbar() {
           <ul className="hidden items-center lg:flex">
             {links.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="rounded-full px-3 py-2 text-sm whitespace-nowrap text-mist transition-colors hover:bg-white/10 hover:text-foreground">
+                <a href={navHref(l.href, onHome)} className="rounded-full px-3 py-2 text-sm whitespace-nowrap text-mist transition-colors hover:bg-white/10 hover:text-foreground">
                   {l.label}
                 </a>
               </li>
@@ -69,7 +69,7 @@ export function Navbar() {
             >
               {links.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} onClick={() => setOpen(false)} className="block rounded-xl px-3 py-3 text-base hover:bg-white/10">
+                  <a href={navHref(l.href, onHome)} onClick={() => setOpen(false)} className="block rounded-xl px-3 py-3 text-base hover:bg-white/10">
                     {l.label}
                   </a>
                 </li>

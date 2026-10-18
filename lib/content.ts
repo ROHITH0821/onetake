@@ -9,12 +9,17 @@ export const meta = {
   description: `Shot a clip? We'll make it a reel. Pro-level editing in minutes for ${priceLabel}, and you see the plan before you pay.`,
 };
 
+// "#…" links are homepage sections; use navHref() so they work from other pages too.
 export const nav = [
   { href: "#what-we-do", label: "What we do" },
   { href: "#examples", label: "Examples" },
   { href: "#pricing", label: "Pricing" },
   { href: "#faq", label: "FAQ" },
+  { href: "/blog", label: "Blog" },
 ];
+
+/** Section anchors stay in-page on the homepage and point back to it elsewhere. */
+export const navHref = (href: string, onHome: boolean) => (href.startsWith("#") && !onHome ? `/${href}` : href);
 
 export const hero = {
   headline: "Shot a clip?",
