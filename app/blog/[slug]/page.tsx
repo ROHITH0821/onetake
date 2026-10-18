@@ -135,7 +135,11 @@ export default async function BlogPostPage({ params }: Props) {
           </section>
         )}
 
-        <BlogCta className="mt-14" title="Turn your clip into a reel" body="Upload a clip under a minute, tap your vibe, and see the edit plan before you pay." />
+        <BlogCta
+          className="mt-14"
+          title={post.cta?.title ?? "Turn your clip into a reel"}
+          body={post.cta?.body ?? "Upload a clip under a minute, tap your vibe, and see the edit plan before you pay."}
+        />
 
         <footer className="mt-10 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/10 pt-6 text-sm">
           <Link href="/" className="text-mist hover:text-foreground">

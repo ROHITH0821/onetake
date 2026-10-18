@@ -34,6 +34,8 @@ export type PostInput = {
   answer: string;
   body: Block[];
   faqs: Faq[];
+  /** Closing call to action; defaults to a generic one. */
+  cta?: { title: string; body?: string };
   /** Slugs of related posts, in display order. */
   relatedPosts: string[];
   /** Drafts are excluded from the blog, sitemap and llms.txt. */
