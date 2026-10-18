@@ -31,8 +31,13 @@ export default function BlogIndexPage() {
 
       <header className="mt-6 max-w-3xl">
         <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">{BLOG.title}</h1>
-        <p className="mt-4 text-lg text-mist sm:text-xl">{BLOG.intro}</p>
-        <EarlyAccessLink className="mt-6 inline-flex h-12 items-center rounded-full bg-brand px-6 font-semibold whitespace-nowrap text-white transition-transform hover:scale-[1.03]">
+        {BLOG.intro.map((p) => (
+          <p key={p} className="mt-4 text-lg text-mist sm:text-xl">
+            {p}
+          </p>
+        ))}
+        <p className="mt-6 text-base text-foreground/90">{BLOG.supportingCta}</p>
+        <EarlyAccessLink className="mt-4 inline-flex h-12 items-center rounded-full bg-brand px-6 font-semibold whitespace-nowrap text-white transition-transform hover:scale-[1.03]">
           {CTA_LABEL}
         </EarlyAccessLink>
       </header>
@@ -50,11 +55,7 @@ export default function BlogIndexPage() {
         </ul>
       </section>
 
-      <BlogCta
-        className="mt-16"
-        title="Got a clip in your gallery? Make it a reel."
-        body="Upload a clip under a minute, tap your vibe and see the edit plan before you pay."
-      />
+      <BlogCta className="mt-16" title="Make your next reel with less editing" body="Upload your clip, choose your vibe, and simplify your editing workflow." />
     </div>
   );
 }

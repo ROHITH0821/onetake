@@ -62,7 +62,10 @@ export const BLOG = {
   title: "Tips to Make Better Reels, Faster",
   metaTitle: "Reel Editing Tips: Make Better Reels, Faster | OneTake Blog",
   description:
-    "Practical tips for turning short phone clips into reels people watch: hooks, cutting dead air, beat-synced edits and Hindi or Telugu captions.",
-  intro:
-    "Short, practical guides for turning everyday phone clips into reels worth posting. OneTake helps you get there with less editing: upload a clip under a minute, tap a vibe, and review the edit plan before you pay.",
+    "Practical tips for creators and small businesses to make better short videos: simplify editing, add Hindi or Telugu captions, and post more.",
+  intro: [
+    "Practical tips for creators, small businesses, and anyone who wants to make better short videos without spending hours editing.",
+    "Learn how to simplify video editing, create captioned reels, and turn recorded clips into videos you are ready to share.",
+  ],
+  supportingCta: "Create your next reel with OneTake. Upload your clip, choose your vibe, and simplify your editing workflow.",
 };

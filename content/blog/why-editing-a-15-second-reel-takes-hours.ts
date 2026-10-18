@@ -3,18 +3,18 @@ import type { PostInput } from "./types";
 // Final copy supplied by OneTake.
 export const post: PostInput = {
   title: "Why It Takes 3 Hours to Edit a 15-Second Reel (And How to Do It in Minutes)",
-  seoTitle: "Why a 15-Second Reel Takes Hours to Edit | OneTake Blog",
-  slug: "why-editing-a-reel-takes-hours",
+  seoTitle: "Edit a 15-Second Reel Faster | OneTake",
+  slug: "why-editing-a-15-second-reel-takes-hours",
   description:
-    "Editing a 15-second reel can take hours: choosing moments, timing cuts, captions, music and reviews. Here's why, and how OneTake makes it simpler.",
+    "Learn why short reels take hours to edit and how OneTake simplifies video editing, helping creators prepare reels with less manual work.",
   excerpt: "Why a short reel turns into a long editing session, and how OneTake helps you get from clip to reel with less manual work.",
   category: "Editing tips",
   author: "OneTake Team",
   publishedAt: "2026-10-18",
-  coverImage: "/blog/reel-editing-time.webp",
+  coverImage: "/blog/reel-editing-workflow.webp",
   coverImageAlt:
     "Editing workspace showing the manual steps behind a reel (finding moments, timing, captions, music, review), a phone with a finished 15-second reel, and a busy timeline",
-  coverCaption: "Behind a 15-second reel: several small editing tasks that add up to a long session.",
+  coverCaption: "A short reel can involve several editing decisions, from choosing clips to reviewing the final result.",
   keywords: ["why does editing take so long", "edit 15 second reel", "reel editing time", "edit reels faster", "short video editing"],
   answer:
     "Editing a 15-second reel can take hours because you are not just cutting a video. You are choosing the best moments, syncing music, adding captions, adjusting timing, and reviewing the final result. OneTake is designed to simplify short-video editing by letting you upload a clip, choose a vibe, and create a reel with less manual work.",
@@ -73,5 +73,5 @@ export const post: PostInput = {
     title: "Ready to spend less time editing?",
     body: "Your footage should not sit unused because editing takes too long. Upload a clip, choose your vibe, and see how OneTake can simplify your next reel.",
   },
-  relatedPosts: ["turn-phone-clip-into-reel", "why-phone-clips-never-get-posted", "hindi-telugu-captions-for-reels"],
+  relatedPosts: ["why-your-videos-never-get-posted", "make-reels-with-hindi-telugu-captions"],
 };
