@@ -6,7 +6,7 @@ import { EDITOR_PRICE, priceLabel, reeditLabel } from "./pricing";
 
 export const meta = {
   title: `OneTake — AI reel editor for ${priceLabel} | Hook, beat-sync, captions done for you`,
-  description: `Shot a clip? We'll make it a reel. Pro-level editing in minutes for ${priceLabel}, and you see the plan before you pay.`,
+  description: `Shot a clip? We'll make it a reel. Upload a clip under a minute, tap your vibe, and get beat-synced cuts and captions. See the edit plan before you pay ${priceLabel}.`,
 };
 
 // "#…" links are homepage sections; use navHref() so they work from other pages too.

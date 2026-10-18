@@ -74,14 +74,14 @@ export function Hero() {
             transition={{ type: "spring", stiffness: 70, damping: 14, delay: INTRO + 0.3 }}
           >
             <PhoneFrame glow>
-              <Reel variant="raw" video={vibe.video} sync="hero" />
+              <Reel variant="raw" video={vibe.video} sync="hero" afterLoad />
               <span className="absolute bottom-4 left-4 rounded-full bg-black/60 px-3 py-1 text-xs font-medium">Raw clip</span>
               <motion.div
                 className="absolute inset-0"
                 animate={{ clipPath: ["inset(0 100% 0 0)", "inset(0 100% 0 0)", "inset(0 0% 0 0)", "inset(0 0% 0 0)", "inset(0 100% 0 0)"] }}
                 transition={loop}
               >
-                <Reel scenes={vibe.scenes} video={vibe.video} sync="hero" words={vibe.words} />
+                <Reel scenes={vibe.scenes} video={vibe.video} sync="hero" words={vibe.words} afterLoad />
                 <span className="absolute bottom-4 right-4 rounded-full bg-brand px-3 py-1 text-xs font-semibold">OneTake reel</span>
               </motion.div>
               <motion.div

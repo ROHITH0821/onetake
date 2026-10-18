@@ -12,15 +12,27 @@ type LazyVideoProps = {
   /** Videos sharing a key play in step; the one with `lead` sets the time. */
   sync?: string;
   lead?: boolean;
+  /** Wait until the page has finished loading before fetching (for above-the-fold clips). */
+  afterLoad?: boolean;
 };
 
+/** Resolves once the page has loaded and the browser is idle. */
+const pageSettled = () =>
+  new Promise<void>((resolve) => {
+    const idle = () =>
+      "requestIdleCallback" in window ? window.requestIdleCallback(() => resolve(), { timeout: 2000 }) : setTimeout(resolve, 300);
+    if (document.readyState === "complete") idle();
+    else window.addEventListener("load", idle, { once: true });
+  });
+
 /** Muted looping clip that only loads and plays while it is near the viewport. */
-export function LazyVideo({ src, className, style, sync, lead = false }: LazyVideoProps) {
+export function LazyVideo({ src, className, style, sync, lead = false, afterLoad = false }: LazyVideoProps) {
   const ref = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const video = ref.current;
     if (!video) return;
+    let cancelled = false;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -35,7 +47,9 @@ export function LazyVideo({ src, className, style, sync, lead = false }: LazyVid
       },
       { rootMargin: "80px" },
     );
-    observer.observe(video);
+    // Above-the-fold clips wait for the page to load so they don't compete with first paint.
+    if (afterLoad) pageSettled().then(() => !cancelled && observer.observe(video));
+    else observer.observe(video);
 
     let follow: (() => void) | undefined;
     if (sync && lead) leaders.set(sync, video);
@@ -50,11 +64,12 @@ export function LazyVideo({ src, className, style, sync, lead = false }: LazyVid
     }
 
     return () => {
+      cancelled = true;
       observer.disconnect();
       if (follow) video.removeEventListener("timeupdate", follow);
       if (sync && lead && leaders.get(sync) === video) leaders.delete(sync);
     };
-  }, [src, sync, lead]);
+  }, [src, sync, lead, afterLoad]);
 
   return <video ref={ref} muted loop playsInline preload="none" className={className} style={style} />;
 }

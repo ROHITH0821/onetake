@@ -32,6 +32,8 @@ type ReelProps = {
   beat?: boolean;
   /** Clip length shown on the raw take. */
   time?: string;
+  /** Defer loading the footage until the page has loaded (hero). */
+  afterLoad?: boolean;
   className?: string;
 };
 
@@ -49,6 +51,7 @@ export function Reel({
   captions = true,
   beat = true,
   time = "0:47",
+  afterLoad = false,
   className,
 }: ReelProps) {
   if (variant === "raw") {
@@ -65,6 +68,7 @@ export function Reel({
             <LazyVideo
               src={lite(video)}
               sync={sync}
+              afterLoad={afterLoad}
               className="size-full object-cover brightness-[0.62] contrast-[0.82] saturate-[0.35] sepia-[0.25]"
             />
           ) : (
@@ -98,6 +102,7 @@ export function Reel({
             src={video}
             sync={sync}
             lead
+            afterLoad={afterLoad}
             className="absolute inset-0 size-full object-cover"
           />
         </>
