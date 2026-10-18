@@ -11,9 +11,9 @@ export const post: PostInput = {
   category: "Editing tips",
   author: "OneTake Team",
   publishedAt: "2026-10-18",
+  // Photo: Unsplash (Unsplash License).
   coverImage: "/blog/reel-editing-workflow.webp",
-  coverImageAlt:
-    "Editing workspace showing the manual steps behind a reel (finding moments, timing, captions, music, review), a phone with a finished 15-second reel, and a busy timeline",
+  coverImageAlt: "A person editing a video at a desk, with a video editing timeline open on a large monitor",
   coverCaption: "A short reel can involve several editing decisions, from choosing clips to reviewing the final result.",
   keywords: ["why does editing take so long", "edit 15 second reel", "reel editing time", "edit reels faster", "short video editing"],
   answer:

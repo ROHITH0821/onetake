@@ -11,9 +11,9 @@ export const post: PostInput = {
   category: "Captions",
   author: "OneTake Team",
   publishedAt: "2026-10-18",
+  // Photo: Unsplash (Unsplash License).
   coverImage: "/blog/hindi-telugu-captions.webp",
-  coverImageAlt:
-    "Illustration of a phone showing a speaker with caption bars, a caption checklist (correct script, spelling, timing, easy to read) and language options for Hindi, Telugu and English",
+  coverImageAlt: "A hand holding a smartphone showing lines of on-screen text while recording a video",
   coverCaption: "Clear captions can make short videos easier to follow for Hindi- and Telugu-speaking audiences.",
   keywords: ["Hindi captions for reels", "Telugu captions for reels", "subtitles for reels", "captioned reels without editing skills", "regional language captions"],
   answer:

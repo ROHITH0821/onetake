@@ -11,9 +11,9 @@ export const post: PostInput = {
   category: "Posting habits",
   author: "OneTake Team",
   publishedAt: "2026-10-18",
+  // Photo: Unsplash (Unsplash License).
   coverImage: "/blog/video-posting-workflow.webp",
-  coverImageAlt:
-    "Illustration of a phone gallery full of recorded clips, a checklist where only “Recorded” is done, and progress bars showing fewer clips edited and posted",
+  coverImageAlt: "A smartphone mounted on a tripod, its camera app framing a desk for recording",
   coverCaption: "Recording content is only the beginning; turning footage into a finished reel is the next step.",
   keywords: ["why I never post my videos", "videos stuck in gallery", "post more consistently", "short video workflow", "small business reels"],
   answer:
